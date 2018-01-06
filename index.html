@@ -7,32 +7,37 @@
 </head>
 <link rel="stylesheet" href="css/style.css">
 <link rel ="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css">
+<script
+  src="https://code.jquery.com/jquery-3.2.1.min.js"
+  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+  crossorigin="anonymous"></script>
 <div id="button-container"></div>
 <form>
   <div class="form-group">
     <label for="Band">Search for Bands</label>
     <input type="text" class="form-control" id="BandSearch" placeholder="Enter band">
   </div>
-  <button type="submit" class="btn btn-primary">Submit</button>
+  <button type="submit" id="NewBandButton" class="btn btn-primary">Submit</button>
 </form>
 <div id="populate-gifs"> </div>
 
-<script
-  src="https://code.jquery.com/jquery-3.2.1.min.js"
-  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-  crossorigin="anonymous"></script>
+
  <script type="text/javascript">
- 	var bands = ['Pink Floyd', 'Nirvana', 'Metallica']
+ 	var bands = ['Pink Floyd', 'Nirvana', 'Metallica', 'Wilco', 'Arcade Fire']
 
  	for (var i = 0 ; i < bands.length; i++) {
-		var BandsButton = $('<button class="btn btn-primary" id="Band band-button" data-search="' + bands[i] + '">' + bands[i] + '</button>');
+		var BandsButton = $('<button class="btn btn-primary" id="band-button" data-search="' + bands[i] + '">' + bands[i] + '</button>');
 		$("#button-container").append(BandsButton);
  	}
- 	$("#BandSearch").on("click", function () {
+ 	$("#NewBandButton").on("click", function () {
+    // Input the data and add a new button
 
+    console.log($("#BandSearch").val());
+    $("#button-container").append(BandsButton);
  	})
  	//event listeners for the band buttons
- 	$("button").on("click", function () {
+ 	$("#button-container").on("click", "#band-button", function () {
+ 		console.log('Second button function');
     //setup a variable to search for a band
  	var band = $(this).attr("data-search");
  	//setup a variable to search GIPHY API and use my key
@@ -71,11 +76,11 @@
               // result item
               bandImage.attr("src", results[i].images.fixed_height.url);
 
-              // Appending the paragraph and personImage we created to the "gifDiv" div we created
+              // Appending the paragraph and band that was created to the "gifDiv" div that was created
               gifDiv.append(p);
               gifDiv.append(bandImage);
 
-              // Prepending the gifDiv to the "#gifs-appear-here" div in the HTML
+              // Prepending the gifDiv to the "#populate-gifs" div in the HTML
               $("#populate-gifs").prepend(gifDiv);
 
             }

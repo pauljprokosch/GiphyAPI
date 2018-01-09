@@ -1,0 +1,30 @@
+body{
+    color: black;
+}
+* {
+	box-sizing: border-box;
+}
+img { 
+    height: 150px;
+    width: 150px;
+}
+#band-button {
+    /* adding spacing between each button*/
+    margin: 5px;
+    color: white;
+    font-size: 20px;
+    background-color: #4CAF50;
+    border-color: #fff;
+}
+#BandSearch
+{ 
+width:  200px; }
+#NewBandButton
+{
+    /* adding spacing between each button*/
+    margin: 5px;
+    color: white;
+    font-size: 20px;
+    background-color: #4CAF50;
+    border-color: #fff;
+}

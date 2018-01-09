@@ -5,7 +5,7 @@
 	<meta charset="utf-8">
 	<title>Band GIPHY</title>
 </head>
-<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" type="text/css" href="css/style.css">
 <link rel ="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css">
 <script
   src="https://code.jquery.com/jquery-3.2.1.min.js"
@@ -20,7 +20,6 @@
   <button type="submit" id="NewBandButton" class="btn btn-primary">Submit</button>
 </form>
 <div id="populate-gifs"> </div>
-
 
  <script type="text/javascript">
  	var bands = ['Pink Floyd', 'Nirvana', 'Metallica', 'Wilco', 'Arcade Fire']
@@ -43,7 +42,14 @@
  	//setup a variable to search GIPHY API and use my key
  	var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
         band + "&api_key=fLFkAzswLiBcnhk4B89M4Q8j1ZpgCmkV&limit=10";
+  //create a new band button upon submit
 
+  function myFunction() {
+    var NewBandButtn = document.createElement("BUTTON");
+    var t = document.createTextNode("CLICK ME");
+    btn.appendChild(t);
+    document.body.appendChild(btn);
+}
       // Setup the AJAX Get request
       $.ajax({
           url: queryURL,
@@ -71,7 +77,9 @@
 
               // Creating an image tag
               var  bandImage = $("<img>");
-
+            // The attr jQuery method allows us to get or set the value of any attribute on our HTML element
+              var state = $(this).attr("data-state");
+              console.log(state);
               // Giving the image tag an src attribute of a proprty pulled off the
               // result item
               bandImage.attr("src", results[i].images.fixed_height.url);
